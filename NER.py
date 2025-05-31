@@ -17,7 +17,7 @@ def extract_phi_entities(text):
     response = requests.post(ollamaurl, json=payload)
     print(response.status_code, response.text)
     if response.status_code == 200:
-        return response.json().get("text", "No entities found.")
+        return response.json().get("response", "No entities found.")
     else:
         return f"Error: {response.status_code} - {response.text}"
 ## TEsting the function
