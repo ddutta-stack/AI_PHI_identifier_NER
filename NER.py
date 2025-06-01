@@ -9,7 +9,9 @@ def extract_phi_entities(text):
     """
     Extract PHI entities from the given text using a pre-trained model.
     """
-    prompt = f"Extract PHI or named entities from the following text:\n\n{text}\n\n Return the entities in JSON format."
+    #prompt = f"Extract PHI or named entities from the following text:\n\n{text}\n\n Return the entities in JSON format."
+    ## Making the promot better -- Prompt engineering 
+    prompt = f"Extract PHI entities such as names, phone numbers, email addresses, and social security numbers from the following text:\n\n{text}\n\nReturn the entities in JSON format. If no entities are found, return an empty JSON object."
     payload = {
         "model": "deepseek-r1:1.5b",
         "prompt": prompt,
@@ -35,11 +37,11 @@ def extract_phi_entities(text):
 interface = gr.Interface(
     fn=extract_phi_entities,
     inputs=gr.Textbox(label="Input Text",lines=6, placeholder="Enter text to extract PHI entities..."),
-    outputs=gr.JSON(label="Extracted Entities"),
+    outputs=gr.Textbox(label="Extracted Entities"),
     title="PHI Identifier - Named Entity Recognition (NER)",
     description="This tool extracts PHI entities from the provided text using a pre-trained model.",
 )
 # Launch the Gradio interface and test the function
 if __name__ == "__main__":
-    interface.launch(share=True)  # Set share=True to allow public access
+    interface.launch()  # Set share=True to allow public access
     # interface.launch()  # Use this for local testing without public access
