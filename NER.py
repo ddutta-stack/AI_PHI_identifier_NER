@@ -20,10 +20,22 @@ def extract_phi_entities(text):
         return response.json().get("response", "No entities found.")
     else:
         return f"Error: {response.status_code} - {response.text}"
-    
-## TEsting the function
-if __name__ == "__main__":
-        sample_test_text = "John Doe's phone number is 123-456-7890 and his email is abc@xyz.com and his SSN is 123-45-6789."
-        print("Testing extract_phi_entities function...")
-        result = extract_phi_entities(sample_test_text)
-        print("Result:", result)
+
+
+## Create a Gradio interface for the function, so commenting this out !!
+
+# ## TEsting the function
+# if __name__ == "__main__":
+#         sample_test_text = "John Doe's phone number is 123-456-7890 and his email is abc@xyz.com and his SSN is 123-45-6789."
+#         print("Testing extract_phi_entities function...")
+#         result = extract_phi_entities(sample_test_text)
+#         print("Result:", result)
+
+# Creating the Gradio interface
+interface = gr.Interface(
+    fn=extract_phi_entities,
+    inputs=gr.Textbox(label="Input Text",lines=6, placeholder="Enter text to extract PHI entities..."),
+    outputs=gr.JSON(label="Extracted Entities"),
+    title="PHI Identifier - Named Entity Recognition (NER)",
+    description="This tool extracts PHI entities from the provided text using a pre-trained model.",
+)
