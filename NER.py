@@ -39,3 +39,7 @@ interface = gr.Interface(
     title="PHI Identifier - Named Entity Recognition (NER)",
     description="This tool extracts PHI entities from the provided text using a pre-trained model.",
 )
+# Launch the Gradio interface and test the function
+if __name__ == "__main__":
+    interface.launch(share=True)  # Set share=True to allow public access
+    # interface.launch()  # Use this for local testing without public access
